@@ -45,3 +45,44 @@ const bookStore = {
 
 // Write your code here!
 
+
+// Selecting and changing my header section
+const bookStoreTitle = document.querySelector('#header');
+bookStoreTitle.textContent = bookStore.name;
+
+// Am now targeting the book-list
+const bookList = document.querySelector('#book-list');
+
+// The function deletes the "Example Title" from the HTML
+
+const placeholder = document.getElementById('delete-this');
+
+if (placeholder) {
+    placeholder.remove();
+}
+
+// The loop
+
+bookStore.books.forEach(book => {
+    // I used console.log to verify the data flow
+    console.log(`Processing book: ${book.title}`);
+    const bookContainer = document.createElement('li');
+    const bookTitle = document.createElement('h3');
+    const bookAuthor = document.createElement('p');
+    const bookImage = document.createElement('img');
+
+   // Set the data from book object
+
+   bookTitle.textContent = book.title;
+   bookAuthor.textContent = book.author;
+   bookImage.src = book.imageUrl;
+   bookImage.alt = `Cover of ${book.title}`;  // The alternative text for the image(accessibility reasons)
+
+   // Append elements to bookContainer
+   bookContainer.append(bookTitle, bookAuthor, bookImage);
+
+   // Append bookContainer to the existing DOM element which is the booklist
+   bookList.append(bookContainer);
+
+});
+
